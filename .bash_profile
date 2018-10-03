@@ -3,30 +3,12 @@ fi
 
 #Set bash colour scheme to bold directories
 export LSCOLORS="Hx"
-alias ls="ls -G"
 
-#git aliases
-alias g='git'
-alias gap='git add -p'
-alias gcl='git clone --recursive'
-alias gr='git remote'
-alias gf='git fetch'
-alias gm='git merge --ff-only'
-alias gps='git push'
-alias gpu='git push -u'
-alias gc='git commit'
-alias gdc='git diff --cached'
-alias gmv='git mv'
-alias grb='git rebase'
-alias gb='git branch'
-alias grm='git rm'
-alias gcp='git cherry-pick'
-alias gcm='git checkout master'
+#aliases
 alias tmux='tmux -u'
-
+alias ls="ls -A -G"
 #Shortcut to reload .bash_profile
 alias br=". ~/.bash_profile"
-
 #Get to work!
 alias werk="cd ~/Shopify-Repos"
 
