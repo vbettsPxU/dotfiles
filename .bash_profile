@@ -2,11 +2,12 @@ if [ -n "$SSH_CLIENT" ]; then text=" ssh-session"
 fi
 
 #Set bash colour scheme to bold directories
-export LSCOLORS="Hx"
+export CLICOLOR=1
+export LSCOLORS=Exfxcxdxbxegedabagacad
 
 #aliases
 alias tmux='tmux -u'
-alias ls="ls -A -G"
+alias ls="ls -A"
 #Shortcut to reload .bash_profile
 alias br=". ~/.bash_profile"
 #Get to work!
