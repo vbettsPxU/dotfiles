@@ -5,6 +5,7 @@ fi
 export CLICOLOR=1
 export LSCOLORS=Exfxcxdxbxegedabagacad
 
+
 #aliases
 alias tmux='tmux -u'
 alias ls="ls -A"
@@ -12,20 +13,23 @@ alias ls="ls -A"
 alias br=". ~/.bash_profile"
 #Get to work!
 alias werk="cd ~/Shopify-Repos"
+alias sp="echo $PWD"
+alias gb="git branch"
+alias gcm="git commit -m"
+alias gs="git status"
 
-#Add a cute star when commands succeed, and a frown when they fail
+#Add a cute mushroom when commands succeed, and a thumbs down when they fail
 prompt_icon() {
   exit_code=$?
-  #If previous command failed, show angry emoji. Otherwise, star emoji.
+  #If previous command failed, show thumbs down. Otherwise, mushroom.
   if [ $exit_code -eq 0 ]; then
-    printf $'\xE2\xAD\x90';
+    printf $'\xF0\x9F\x8D\x84';
   else
-    printf $'\xF0\x9F\x98\xA1';
+    printf $'\xF0\x9F\x91\x8E';
   fi
 }
 
-export PS1=$'\[\e[1;35m\]\u@\h:\w${text}$(prompt_icon) \[\e[m\] '
-
+export PS1=$'\[\e[1;35m\]\u@\h:\W${text} $(prompt_icon) \[\e[m\] '
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
