@@ -7,8 +7,38 @@ set shiftwidth=2
 set softtabstop=2
 set list
 set ruler
+set title
 set listchars=tab:>-
-set statusline="%f%m%r%h%w [%Y] [0x%02.2B]%< %F%=%4v,%4l %3p%% of %L"
+set laststatus=2
+" set statusline="%F%m%r%h%w [%Y] [0x%02.2B]%< %F%=%4v,%4l %3p%% of %L"
+
+function! InsertStatuslineColor(mode)
+  if a:mode == 'i'
+    hi statusline guibg=Green ctermfg=6 guifg=Black ctermbg=0
+  elseif a:mode == 'r'
+    hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
+  else
+    hi statusline guibg=DarkRed ctermfg=1 guifg=Black ctermbg=0
+  endif
+endfunction
+
+au InsertEnter * call InsertStatuslineColor(v:insertmode)
+au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
+hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
+
+set statusline=%f                           " file name
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%y      "filetype
+set statusline+=%h      "help file flag
+set statusline+=%m      "modified flag
+set statusline+=%r      "read only flag
+set statusline+=\ %=                        " align left
+set statusline+=Line:%l/%L[%p%%]            " line X of Y [percent of file]
+set statusline+=\ Col:%c                    " current column
+set statusline+=\ Buf:%n                    " Buffer number
+set statusline+=\ [%b][0x%B]\               " ASCII and byte code under cursor
+
 
 map <F7> mzgg=G`z
 map LN :ALENext<CR>
@@ -48,13 +78,15 @@ call plug#begin('~/.vim/plugged')
   " Lint config
   let g:ale_lint_on_save = 1
   let g:ale_lint_on_text_changed = 1
-  let g:ale_linters = {'javascript': ['eslint'], 'scss': ['sasslint'],}
+  let g:ale_linters = {'javascript': ['eslint'], 'scss': ['stylelint'],}
   let g:ale_linters_explicit = 1
   let g:ale_javascript_eslint_use_global = 1
-  let g:ale_scss_eslint_options = '-c ~/.eslintrc'
-  let g:ale_scss_sasslint_use_global = 1
-  let g:ale_scss_sasslint_options = '-c ~/.sasslintrc'
+  let g:ale_javascript_eslint_options = '-c ~/.eslintrc'
+  let g:ale_scss_stylelint_use_global = 1
   " Fixer config
-  let g:ale_fixers = {'javascript': ['eslint'], 'scss': ['sasslint'],}
+  let g:ale_fixers = {'javascript': ['eslint'], 'scss': ['stylelint'],}
+  Plug 'vim-scripts/matchit.zip'
+  Plug 'vim-scripts/tComment'
+  Plug 'danro/rename.vim'
 call plug#end()
 
