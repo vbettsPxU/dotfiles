@@ -1,5 +1,8 @@
 {
-  "extends": ["stylelint-config-recommended-scss", "stylelint-config-recess-order"]
+  "extends": [
+    "/Users/victoriabetts/.nvm/versions/node/v9.11.2/lib/node_modules/stylelint-config-recommended-scss",
+    "/Users/victoriabetts/.nvm/versions/node/v9.11.2/lib/node_modules/stylelint-config-recess-order"
+  ],
   "rules" : {
     "number-leading-zero": "always",
     "string-quotes": "double"

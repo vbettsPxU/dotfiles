@@ -1,5 +1,6 @@
 filetype plugin indent on
 syntax on
+set background=dark
 set nowrap
 set number
 set expandtab
@@ -10,7 +11,13 @@ set ruler
 set title
 set listchars=tab:>-
 set laststatus=2
+set t_Co=16
+
 " set statusline="%F%m%r%h%w [%Y] [0x%02.2B]%< %F%=%4v,%4l %3p%% of %L"
+
+set nocompatible
+filetype plugin on
+runtime macros/matchit.vim
 
 function! InsertStatuslineColor(mode)
   if a:mode == 'i'
@@ -74,19 +81,26 @@ call plug#begin('~/.vim/plugged')
   " General config
   let g:ale_sign_column_always = 1
   let g:ale_change_sign_column_color = 1
-  let g:ale_enabled = 0
+  let g:ale_enabled = 1
   " Lint config
   let g:ale_lint_on_save = 1
   let g:ale_lint_on_text_changed = 1
   let g:ale_linters = {'javascript': ['eslint'], 'scss': ['stylelint'],}
   let g:ale_linters_explicit = 1
-  let g:ale_javascript_eslint_use_global = 1
-  let g:ale_javascript_eslint_options = '-c ~/.eslintrc'
-  let g:ale_scss_stylelint_use_global = 1
+  let g:ale_javascript_eslint_use_global = 0
+  let g:ale_scss_stylelint_use_global = 0
   " Fixer config
   let g:ale_fixers = {'javascript': ['eslint'], 'scss': ['stylelint'],}
   Plug 'vim-scripts/matchit.zip'
   Plug 'vim-scripts/tComment'
-  Plug 'danro/rename.vim'
+  Plug 'mustache/vim-mustache-handlebars', { 'for': ['mustache', 'handlebars'] }
+  Plug 'nathanaelkane/vim-indent-guides'
+  let g:indent_guides_enable_on_vim_startup = 0
+  let g:indent_guides_auto_colors = 0
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=4
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=0
 call plug#end()
 
+
+highlight ColorColumn ctermbg=4
+call matchadd('ColorColumn', '\%81v', 100)

@@ -1,17 +1,27 @@
 {
-  "extends": "airbnb",
-    "rules": {
-      "no-plusplus": 0,
-      "no-underscore-dangle": 0,
-      "class-methods-use-this": 0
-    },
-    "plugins": [
-      "react",
-    "jsx-a11y",
-    "import"
-    ],
-    "env": {
-      "browser": true,
-      "node": true
-    }
+  extends: "airbnb",
+  parser: "babel-eslint",
+  parserOptions: {
+    sourceType: "module",
+    allowImportExportEverywhere: true,
+  },
+  rules: {
+    "arrow-parens": ["error", "as-needed"],
+    "class-methods-use-this": "off", // https://eslint.org/docs/rules/class-methods-use-this
+    "no-new": "off", // https://eslint.org/docs/rules/no-new#disallow-new-for-side-effects-no-new
+    "no-plusplus": "off", // https://eslint.org/docs/rules/no-plusplus#disallow-the-unary-operators--and----no-plusplus
+    "no-restricted-globals": "off", // https://eslint.org/docs/rules/no-restricted-globals#disallow-specific-global-variables-no-restricted-globals
+    "no-underscore-dangle": "off", // https://eslint.org/docs/rules/no-underscore-dangle#disallow-dangling-underscores-in-identifiers-no-underscore-dangle
+  },
+  env: {
+    browser: true,
+    jquery: true,
+  },
+  globals: {
+    Shopify: "readonly",
+    QRCode: "readonly",
+    ActiveXObject: "readonly",
+    YT: "readonly",
+  }
 }
+
